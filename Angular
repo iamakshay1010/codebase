@@ -1,0 +1,148 @@
+Angular
+
+npm install -g @angular/cli
+ng new my-app
+
+cd my-app
+ng serve --open
+
+ng serve hfcl-emsd --configuration development
+
+ng generate component Akshay
+ng g class service/book
+ng g guard shared/auth
+ng add @angular/material
+ng build —prod
+
+npx kill-port 4200
+
+npm install bootstrap
+
+——> to run server
+     npm run server
+
+—>angular.json—>serch for build—>then itegrate this files
+   "styles": [
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.css"
+            ],
+            "scripts": ["./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.js"]
+========================================================================
+ng new angular-tour-of-heroes
+cd angular-tour-of-heroes
+ng serve --open
+
+ng generate component heroes
+ng generate service hero
+
+ng generate module app-routing --flat --module=app
+
+npm install angular-in-memory-web-api --save
+====================cheet codes====================================================
+ constructor(private http:Http) { }
+
+ngOnInit() {}
+ngOnDestroy(){}
+
+====================learobservable====================================================
+ this.users = ['ram', 'rajan', 'rahul'];
+    this.userabervable$ = of(this.users);
+    console.log(this.userabervable$);
+
+//---creating an observable
+    new Observable((item) => {
+      setTimeout(() => {
+        item.next('In Progress');
+      }, 2000);
+
+      setTimeout(() => {
+        item.next('Pending');
+      }, 4000);
+
+      setTimeout(() => {
+        item.next('Completed');
+      }, 6000);
+    }).subscribe((result) => {
+      console.log(result)
+    });
+
+
+====================ngx-cookie-service====================================================
+https://www.npmjs.com/package/ngx-cookie-service
+
+  this.cookieService.set('Test', 'Hello World');
+  this.cookieValue = this.cookieService.get('Test');
+this.cookieService.delete('sessionid')
+
+====================ngx-cookie-service====================================================
+apreIP() {
+    this.httpClient.get(`${AppSettings.API_ENDPOINT}aprecomm/getipaddress/`, { responseType: 'text' })
+      .subscribe((data: any) => {
+        this.apreIp = data;
+        this.cookieService.set('apreIP',this.apreIp);
+      });
+  }
+
+====================ngOnDestroy=clearInterval================================================
+ngOnDestroy() {
+    clearInterval(this.timeOutId);
+    this.subscription.forEach(subscriptions => subscriptions.unsubscribe());
+  }
+
+
+====================CNMS/EMS====================================================
+apreFirstStep() {
+    return new Promise<void>((resolve, reject) => {
+      const payLoad = {
+        username: this.cookieService.get('userName'),
+        roletype: this.cookieService.get('adminID'),
+        token: this.cookieService.get('token')
+      }
+      this.aprecommAuthService.cnmsToken(payLoad).subscribe((result) => {
+        this.userData = result;
+        resolve();
+      })
+    })
+  }
+
+
+====================ngFormformGroup====================================================
+
+  <form (ngSubmit)="submitUser()" [formGroup]="signUpForm" autocomplete="off" id="submitForm" #signUp="ngForm”>. //——> [formGroup]="signUpForm" 
+
+<input id="password" [type]="showPassword ? 'text' : 'password'" class="form-control" formControlName="tenant_password" (keyup)="checkPassword()"> //——> formControlName="tenant_password"
+
+this.signUpForm.get('tenant_password').value
+———————————————————————————————
+
+
+====================title====================================================
+
+
+====================title====================================================
+
+
+====================title====================================================
+
+
+====================title====================================================
+
+
+====================title====================================================
+
+
+====================title====================================================
+
+====================title====================================================
+
+
+====================title====================================================
+
+====================title====================================================
+
+
+
+
+
+

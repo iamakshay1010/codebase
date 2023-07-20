@@ -1,0 +1,190 @@
+Kubernetes/AWS services
+
+minikube start
+
+
+//======resources
+https://youtu.be/X48VuDVv0do
+
+//==========CI/CD Resources
+https://youtu.be/qP8kir2GUgo   —> for python
+https://youtu.be/JS07npwL3Ps   —>for mern stack with EC2
+
+https://youtu.be/3jXtTSnA8zw —>with cmds for node api
+
+
+//=========AWS
+to check which free services are there
+https://aws.amazon.com/free/compute/
+
+load balancer
+https://aws.amazon.com/elasticloadbalancing/?p=ft&c=cp&z=3
+
+//===========================================================
+basic concepts
+master has worker nodes—>worker nodes has kublets(k8 process for cluster to talk to each others )
+each worker node has docker container runing on it
+on worker node application is running 
+on master node important procceses run to manage and run cluster(api server)
+master ocntaines(api server,controllermanager,sceduler ,etdc)
+etdc-current state of k8 cluster
+we can have mutiple masters so one master is down cluster continues to function bcz of other master(in prod there could be mutiple masters)
+
+======pod,service and ingress
+node cantains the pods(containers contain pods)
+pod(your application which can use db) is smallest unit of k8
+here db is also coming under the node
+u can run mutiple containers under a pod but usually we run only one
+each pod(application,db etc) gets its own ip address inside the node
+IF SUPPOSE WE ARE USING IP OF DB(POD) AND IT CRASHED NEW POD WILL BE CREATED AND AND NEW IP WILL BE ASSIGNED AND THIS IS INCONVINIENT AND THATS WHY WE USE “SERVIES”
+
+//———SERVIES AND INGRESS
+servies is perment IP adress
+lifrcycle of pod and service dont chnage
+//——internal and external service
+external when we want to access data in browser
+inernal is basicaly when we want our db p address to communicate within and not external
+//——ingress
+when we open the sevice externa we want the url to look professional and human readable 
+and tahts why we use ingress
+//——config map and secret
+external configuration to application(liek env)
+dont put credential in config map
+//——secret
+to store the user credentials over there
+it stores in base 64 format
+the build in security mechanism is not enabled by default
+//——volumes
+if the pod of the db crshed or restarted the data will be gone and to store or persiste the datawe use volume
+to save data from lost we attach the volume to local or remote storage where data actualy gets stored
+k8 does not persist data we hav to manually persist the data in physical storage
+//—deployment stateful set
+sometimes the external ip might go down in pduction(akshay.com)
+thats why we maintain the deployment of pods in mutiples so if one stops fucntioning we have to other to take place of that(load balancing)
+we cant replicate the pod of db bcz its has its state(data) and they all should access same storage where they read/write this will cause inconsistancy to avoid this we have STATEFULSET
+—MONGODB,elastic,mysql should be created with satefulset not deplyment
+—db is often hosted outside k8
+
+//——minikub and kubctl
+minicub to test your changes locally
+—minicub is node where master processes and worker processes and it also has docker in it and it will run in local setup iin virtual box
+//——kubectl
+kbectl is used intertect minicub with cluster(pods,db) on node
+
+//==========installing minicub
+brew install hyperkit
+brew install minikube (minikube has kubectl as dependancy)
+
+
+
+
+/==============to start k8 cluster====================================================
+minikube start
+we will use hyper viser to start teh cluster and it has docker preinstalled
+minikube start —vm-driver=hyperkit
+kubectl  get nodes   //—to get status of nodes
+minikube status
+kubectl version
+
+
+//===========================create deployment=============================================
+kubectl get nodes
+kubectl get pod
+kubectl get services
+kubectl create -h    //—to get help
+
+kubectl create deployment NAME —image=image [—dry-run] [options]
+ kubectl create deployment nginx-depl --image=nginx
+kubectl get deployment
+kubectl get pods
+//—debigging pods
+kubectl logs POD_name
+
+kubectl create deployment mongo-depl --image=mongo
+kubectl get pods
+kubectl logs
+kubectl describe pod [pod-name]
+//—to go to terminal of mongo
+//—here it(interactive terminal)
+kubectl exec -it [name-of-pod] — bin/bash
+kubectl exec -it mongo-depl-5ccf565747-8f4qn -- bin/bash
+
+//=======================================================
+minikube stop
+minikube delete
+minikube start
+
+
+//====kubectl apply-F====creating yaml file=======================================================
+kubectl create deploymen name image option1 option2 option3
+kubectl apply -f [file-name]
+kubectl apply -f config-file.yml
+
+kubectl get deployment
+kubectl delete deployment
+
+//—example of apply -f file——3.42.38
+delete all the deplyments of there are any
+kubectl get replicaset
+
+touch nginx-deployment.yaml
+vim nginx-deployment.yaml
+to add file stuff to abouve file use this website
+https://kubernetes.io/docs/tasks/run-application/run-stateless-application-deployment/
+
+1. first spec is for deployemnts and second specs is pods
+kubectl apply -f nginx-deployment.yaml
+kubectl get pods
+
+to exit file==>esc—>:wq
+
+//=============deploying in mongo or mongo express
+we will create only inetrnal service for this
+
+kubectl get all     //—gets all components inside of cluster
+
+https://hub.docker.com/search?q=mongo
+/—putting the secrete file
+kind:secret
+type:opaque
+data:
+   mongo-root-username:
+  mongo-root-password:
+
+type in cmd
+  echo -n  ‘username’ | base64 
+and value what u get put in yaml file for username
+ mongo-root-username:dxykakn=
+
+//====create folder—3.55.10
+1.craete folder on desktop named k8s-configuration
+inside of that create to files
+mongo-secret.yaml and mongo.yaml
+2. cd k8s-configuration
+3. kubectl apply -f  mongo-secret.yaml
+4. kubectl get secret
+
+
+//====mongo db internal service
+kubectl get all  —>to get all compoents
+kubectl get all  | grep  mongodb   —>to get filtered components named mongodb
+
+
+//=====to run services
+kubectl get services
+minikube service [service-name]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

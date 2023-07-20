@@ -1,0 +1,44 @@
+Deployment
+
+ssh root@192.168.170.34
+hfcl@123
+ls
+—kepp repo in folder
+—for FE dist img should. be build first
+scp filder.zip root@192.168.170.34:/root/.  —>to copy under root folder
+—ls
+—unzip filder.zip
+—cd filder
+—ls
+—cnms lite is main directory (in root)
+—mkdir backup_src
+mv hfcl_cnms_backend/hfcl_cnms_be/backup_src
+—ls
+—go to root
+—cd backend code and move main backend code to cnms_lite
+—mv hfcl_cnms_bakckend / /root /cnms_lite /  (moving main nackenf code tocnms lite)
+—ls
+cd cnms_lite
+
+
+===>for docker image—
+—mv 2_docker-compose.yml upgrade_cnmslie_docker-compose.yml
+-docker images
+—u should give new version to docker to avoiv conflicts
+
+—vim  docker.yml(just to edit file)(nnot needed)
+==>send cmd 0ver meet
+—1—chnage version first
+-2—
+—3—execute cmd to build images
+—4—execute cmd to build images(execute same command but append restart at end)(.yml restart)
+—5—
+
+export CNMS_VERSION=4.3.1.0_apr19 && export DOCKER_REPO=cnms-lite && docker-compose -f upgrade_cnmslite_docker-compose.yml up -d
+
+export CNMS_VERSION=4.3.1.0_apr19 && export DOCKER_REPO=cnms-lite && docker-compose -f upgrade_cnmslite_docker-compose.yml restart
+
+
+
+
+

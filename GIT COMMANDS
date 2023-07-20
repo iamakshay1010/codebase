@@ -1,0 +1,215 @@
+GIT COMMANDS
+
+sudo chown -R $USER:$(id -gn $USER) /Users/akshaymayekar/.config
+
+//=====open source
+
+https://github.com/topics/react
+
+https://adamtheautomator.com/git-pull-request/
+//=====open source
+
+
+//———git stash——
+git stash
+git stash apply
+git stash drop    //—to remove all the changes
+
+
+git status 
+git show-branch 
+git branch -a      // TO SHOW BRANCHES
+git checkout remotes/origin/new-design 
+git diff ios/projectred.xcodeproj/project.pbxproj  
+git checkout screens/viewCard/ViewCardScreen.js 
+git checkout screens/addressDetails/AddressDetailScreen.js  
+git checkout -b augmont-implementation_dark_theme-merge-devAM
+
+
+git clone —single-branch -b “branch-name”  htttp:branch-link . (dot is imp as to clone all)
+
+//———to create new branch and switch to it augmontNew
+git checkout -b ＜branchname＞
+git reset --hard origin/＜branchname＞
+
+git pull origin augmontNew
+
+//——————————new branch——————starts—————————————
+git checkout  implementation_payout_augmont_intergation_devAM
+git push origin implementation_payout_augmont_intergation_devAM
+git pull origin implementation_payout_augmont_intergation_devAM
+
+git pull origin implementation_payout_augmont_intergation
+//——————————new branch——————ends—————————————
+
+git checkout -b implementation_payout_augmont_intergation_devAM
+git pull origin implementation_payout_augmont_intergation
+git checkout -b dev_akshay
+git checkout  augmont-implementation_dark_theme-merge-devAM
+git checkout  implementation_brand_focused_flow 
+git checkout augmontNew
+git checkout augmont-implementation_dark_theme-merge-devAM
+git pull origin augmont-implementation_dark_theme-merge-devAM
+git pull origin implementation_brand_focused_flow
+git push origin augmont-implementation_dark_theme-merge-devAM
+git push origin implementation_payout_augmont_intergation
+git merge origin augmont-implementation_dark_theme-merge
+
+git checkout  origin/augmont-dev-gowri
+git merge  origin origin/augmont-dev-gowri
+git merge   origin augmont-implementation_dark_theme-merge-devAM
+git pull  origin origin/augmont-dev-gowri
+git push origin augmont    //——
+
+git checkout augmont-implementation_dark_theme-merge-devCV
+git pull origin augmont-implementation_dark_theme-merge-devCV
+
+//=======================================================
+npx react-native run-ios --simulator="iPhone 12"
+npx react-native run-ios --simulator="iPhone SE (2nd generation)"
+npx react-native run-ios --simulator="iPhone 8"
+npx react-native run-ios --simulator="iPod touch (7th generation)"
+
+
+/=====================to undo merge issues==================================
+ git reset --hard 2c46752a1424ef2ec5c0d6f3f180c4cfe136c2de
+rm -rf .git/MERGE*
+git log
+/=====================to undo merge issues==================================
+
+
+//———delete branch
+git push origin -d dev_akshay
+
+
+git pull origin remotes/origin/new-design
+git status
+git add screens/addressDetails/AddressDetailScreen.js
+git commit -m "address validation"
+git push origin dev1
+git push origin refs/heads/remotes/origin/new-design:refs/heads/remotes/origin/new-design 
+BriefUser
+
+//———merging——
+git merge --abort
+git pull origin augmountNew
+
+
+npm cache clean -force
+npm install
+
+//——android ru time error
+sudo chmod -R 777 node_modules
+sudo chmod -R 777 android 
+export ANDROID_HOME=~/Library/Android/sdk
+
+
+//————————pod issues——————————
+pod repo remove trunk //—imp
+pod install --repo-update
+$FirebaseSDKVersion = '8.10.0'
+rm -rf Podfile.lock
+sudo pod install --repo-update --allow-root
+pod update Firebase/Crashlytics
+* deleted Pods folder
+* rm -rf Podfile.lock
+* pod update
+* pod repo update
+* pod install --repo-update
+* sudo chmod -R 777 ios/ 
+sudo chmod -R 777  '/Users/akshay/Desktop/cwventures-app/ios/projectred.xcodeproj/project.pbxproj'
+sudo chmod -R 777 ios/ 
+
+//———to check list of devices connected to mac
+xcrun xctrace list devices
+react-native run-ios --device
+react-native run-ios --udid 5a37a3fd2826187cad5345aaeccd5c8c8a27dd3b
+sudo npm run ios —device iPad (12.5.6)
+sudo npm run ios —device iPhone 13 mini Simulator
+//———
+cd ios
+sudo pod install --allow-root
+sudo chmod -R 777 ./
+cd..
+
+
+//=======
+sudo npm install react-native-appsflyer@6.8.2 --force 
+
+
+
+
+//========sudo git checkout screens/genderAndAge/GenderAndAgeScreen.js===========pod ======
+sudo pod deintegrate --allow-root
+sudo pod cache clean --all --allow-root
+sudo pod install --allow-root
+sudo pod install --repo-update --allow-root
+sudo npm install --force
+
+//—————to list ios devices
+xcrun xctrace list devices
+
+sudo npm run ios --udid 5a37a3fd2826187cad5345aaeccd5c8c8a27dd3b
+
+react-native run-ios --udid 5a37a3fd2826187cad5345aaeccd5c8c8a27dd3b
+
+
+//=======android errors==================
+
+cd android && ./gradlew clean && cd .. 
+cd android && rm -rf ~/.gradle && cd .. 
+cd android && sudo ./gradlew clean && cd .. 
+
+rm -rf ~/.gradle
+chmod +x gradlew
+
+
+——>remove buildToolsVersion  —>soemtimes work
+
+buildscript {
+    ext {
+        minSdkVersion = 23
+        compileSdkVersion = 30
+        targetSdkVersion = 30
+        ndkVersion = "21.4.7075529"
+        buildToolsVersion = "30.0.0"
+
+
+//==========================
+
+
+1. Go to ios/Pods/Local Podspecs directory in your project
+2. Check every json file to find highest required ios version. Mine was "ios": "10.0" in some of them
+3. Go back to ios/ directory
+4. Open Podfile file
+5. Uncomment # platform :ios, '9.0' and replace 9.0 with version from 2. step, for example 10.0.
+    * # platform :ios, '9.0' > platform :ios, '10.0'
+6. Run pod install and the error should be gone
+
+
+pod install --repo-update
+
+//=============TAGS===lables====================
+git add [files]
+git commit -m "with message"
+git tag -a v2.0 -m "with message"
+git push
+git push origin v2.0. OR git push origin --tags
+//—to delete tag
+git push --delete origin v1.0 
+git tag -d v1.0 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

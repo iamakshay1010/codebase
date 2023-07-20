@@ -1,0 +1,73 @@
+Material UI
+
+flexDirection={{ xs: "column", sm: "row" }}
+
+sx={{ display: { xs: 'none', md: 'block', sm: 'block' } }}
+
+const { params } = this.props.navigation.state;
+
+sx={{ padding: { xs: '-10px', md: '0px', sm: '0px' } }}
+
+
+const person = {
+    name: "Obaseki Nosa",
+    location: "Lagos",
+}
+
+localStorage.setItem('LicenseData', JSON.stringify(LicenseData));  
+JSON.parse(localStorage.getItem('LicenseData'))
+
+
+* xs, extra-small: 0px
+* sm, small: 600px
+* md, medium: 900px
+* lg, large: 1200px
+* xl, extra-large: 1536px
+
+
+
+import { useNavigate } from 'react-router-dom';
+ const navigate = useNavigate();
+navigate('/view');
+
+
+import { downloadLicense
+ } from "../../apiCalls";
+
+getAllLicences()
+        .then((response) => {
+            if(response) setLicences(response)
+            isLoading(false)
+        })
+
+
+
+localStorage.getItem('token')
+ localStorage.setItem('LicenseData',LicenseData);
+
+
+ style={{marginTop:'-10px'}}
+
+<Grid container direction="row">
+                    <Grid item direction="column" sm={6} xs={6}>
+                    <FormLabel id="demo-row-radio-buttons-group-label" className="label">Tenant Name (ID)</FormLabel>
+                    </Grid>
+                    <Grid item direction="column" sm={6} xs={6}>
+                    <FormLabel id="demo-row-radio-buttons-group-label" className="label">Tenant Name (ID)</FormLabel>
+                    </Grid>
+                </Grid>
+
+
+
+ <Grid item sm={6} xs={6}>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,176 @@
+Django Config
+
+
+Pip install pymongo
+
+//======django project setup
+django-admin startproject <projectname>
+python manage.py startapp example
+
+virtualenv venv
+source env/bin/activate
+pip install django
+python -m pip freeze > requirements.txt
+django-admin startproject <projectname>
+python manage.py startapp <appname>
+//=======
+
+python manage.py runserver
+
+virtualenv --python=python3.8 venv
+virtualenv venv
+source venv/bin/activate
+
+pip install -r requirements.txt
+
+pandas==1.0.0
+
+pip install django-cors-headers
+pipenv install django-cors-headers
+
+
+python -m pip install uWSGI==2.0.19.1
+
+//====error resolve——for LMS BE
+conda install python=3.8
+
+virtualenv -p python3 envname
+pip install django-environ
+
+
+//====MAJOR ERROR
+python -m pip install --upgrade pip
+python -m pip cache purge
+python -m pip install numpy==1.20.3
+python -m pip install --no-cache-dir numpy==1.20.3
+pip install wheel setuptools pip --upgrade
+pip install requests --pre
+sudo CC=gcc pip install uwsgi
+pip uninstall psycopg2 
+pip install psycopg2-binary
+sudo pip install psycopg2
+pip install psycopg2-binary -t .
+sudo pip install pymongo
+python manage.py migrate
+python manage.py runserver
+
+
+
+
+pip install --upgrade pip
+
+///error resolved——————
+python -m pip install --upgrade pip
+python -m pip cache purge
+python -m pip install numpy==1.20.3
+python -m pip install --no-cache-dir numpy==1.20.3
+
+pip install pip==21.3.1
+
+//============
+python3.8 -m venv ~/venv/py3.8   
+source ~/venv/py3.7/bin/activate 
+
+//=====psycopg2 error resolved=======
+pip install psycopg2-binary --force-reinstall --no-cache-dir
+
+
+
+
+//============
+cmd+shift+c
+which python
+
+cmd+shift+. to show hidden files
+
+//============to rename file location==================
+$ file /usr/local/bin/python
+/usr/local/bin/python: symbolic link to `/usr/bin/python'
+
+/usr/bin/python: symbolic link to `/usr/bin/python1’
+
+brew install python@3.8 
+
+cd /usr/local/bin
+$ ln -s python3 python
+
+to give fulll acess to terminal
+https://stackoverflow.com/questions/32659348/operation-not-permitted-when-on-root-el-capitan-rootless-disabled
+
+//============to rename file location==================
+
+To show hidden files and folders in Commander One, simply go to View ➙ Show Hidden Files (Shift + Option + ⌘ + H) in the menu bar.
+
+
+//=====SOLVED ISSUE=======
+conda install python=3.8
+virtualenv --python=/usr/bin/python3.8 venv
+
+conda create -n <myenv> python=3.6.8
+conda activate <myenv>
+
+source activate venv
+
+
+//—whell error
+https://bobbyhadz.com/blog/python-note-this-error-originates-from-subprocess
+
+pip install wheel setuptools pip --upgrade
+pip install requests --pre
+sudo CC=gcc pip install uwsgi
+
+
+pip uninstall psycopg2 
+pip install psycopg2-binary
+
+brew install libpq --build-from-source
+
+
+
+
+
+Django==3.1.4
+django-guardian==2.3.0
+djangorestframework-guardian==0.3.0
+djangorestframework==3.12.2
+psycopg2==2.8.6
+django-cors-headers==3.5.0
+django-cprofile-middleware==1.0.5
+django-silk==4.1.0
+drf-yasg==1.20.0
+PyJWT==1.5.3
+celery==5.0.5
+redis==3.5.0
+pre-commit==2.9.3
+requests==2.23.0
+django-extensions==3.1.0
+amqp==5.0.2
+pika==1.1.0
+pandas==1.0.0
+jsonfield==3.1.0
+django-websocket-redis==0.6.0
+django-material-admin==1.7.16
+django-utils-six==2.0
+uWSGI==2.0.19.1
+django-online-users==0.3
+serpy==0.3.1
+ntplib==0.3.4
+django-db-connection-pool==1.0.7
+kafka-python==2.0.2
+openpyxl==3.0.9
+Pillow==7.0.0
+pyshark==0.4.5
+django-tenant-schemas==1.11.0
+pyotp==2.6.0
+numpy==1.24.2
+pyparsing==3.0.6
+pyrad==2.4
+pyrabbit==1.1.0
+captcha==0.4
+
+
+uWSGI==2.0.19.1
+uWSGI==2.0.19.1
+
+
+

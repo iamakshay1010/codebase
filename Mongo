@@ -1,0 +1,100 @@
+Mongo
+
+
+brew services start mongodb
+
+mongosh
+mongod
+
+
+mongo url setting up———————starts—————————————
+mongoose.connect('mongodb://localhost:27017/', {
+    dbName: 'event_db',
+    useNewUrlParser: true,
+    useUnifiedTopology: true 
+}, err => err ? console.log(err) : console.log('Connected to database'));
+
+
+mongoose.connect('mongodb://localhost:27017/event_db');
+
+mongo url setting up——————ends————————————
+
+  reaccurance: {
+    type: [{
+      type: String,
+      enum: ['Daily', 'Weekly', 'Bi-Weekly', 'Monthly']
+    }]
+  },
+
+
+FLASH MESSAGES
+https://www.npmjs.com/package/req-flash
+
+
+——————id-of-db-update————————————
+db.clients.update({ _id: ObjectId("123")}, { $set: { _id: ObjectId("456")}})
+
+collection.update({"_id": ObjectID("5703....dd0")}, {$set:{"feedback": body.feedback}}, function(err, result){ });
+
+const category = await Category.findById(req.params.id);
+
+const category = await Category.findByIdAndUpdate(
+        req.params.id,
+        {
+            name: req.body.name,
+            icon: req.body.icon || category.icon,
+            color: req.body.color,
+        },
+        { new: true}
+    )
+
+
+//——
+ Category.findByIdAndRemove(req.params.id).then(category =>{
+        if(category) {
+            return res.status(200).json({success: true, message: 'the category is deleted!'})
+        } else {
+            return res.status(404).json({success: false , message: "category not found!"})
+        }
+    }).catch(err=>{
+       return res.status(500).json({success: false, error: err}) 
+    })
+
+//======
+
+const orderList = await Order.find().populate('user', 'name').sort({'dateOrdered': -1});
+
+//======
+ const order = await Order.findById(req.params.id)
+    .populate('user', 'name')
+    .populate({ 
+        path: 'orderItems', populate: {
+            path : 'product', populate: 'category'} 
+        });
+
+//====
+const orderItemsIds = Promise.all(req.body.orderItems.map(async (orderItem) =>{
+        let newOrderItem = new OrderItem({
+            quantity: orderItem.quantity,
+            product: orderItem.product
+        })
+
+        newOrderItem = await newOrderItem.save();
+
+        return newOrderItem._id;
+    }))
+
+//======
+
+
+
+
+resources——>
+https://www.tutorialspoint.com/mongodb/mongodb_create_database.htm#:~:text=The%20use%20Command,will%20return%20the%20existing%20database.
+
+
+—————————————————————————————————————————————————————————————
+
+
+
+

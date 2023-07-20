@@ -1,0 +1,50 @@
+expo
+
+
+// react native snap carousal
+https://www.npmjs.com/package/react-native-snap-carousel
+
+
+npm why react-native-reanimated
+sudo npm i react-native-reanimated@2.9.1 --force
+
+//throwing error for this
+    "react-native-reanimated": "~2.14.4",
+
+  "main": "node_modules/expo/AppEntry.js",
+
+sudo npm uninstall expo-image-picker --force
+
+
+
+
+
+//=======to fix sdk verison issue===start
+npm install expo@^48.0.0
+npx expo install --fix
+
+npx expo-doctor
+
+sudo npm install @react-native-async-storage/async-storage@1.17.11 @react-native-picker/picker@2.4.8 expo-image-picker@~14.1.1 expo-status-bar@~1.4.4 react@18.2.0 react-dom@18.2.0 react-native@0.71.8 react-native-reanimated@~2.14.4 react-native-svg@13.4.0 react-native-web@~0.18.10 @types/react@~18.0.27 typescript@^4.9.4
+//=======to fix sdk verison issue===ends
+
+//—keyboard-aware-scroll-view —eror
+ "react-native": "^0.72.1",
+ "react-native": "0.65.2",  //app crashes
+"react-native-keyboard-aware-scroll-view": "^0.9.5",
+
+//——add this specific ackags
+sudo npm i react-native@0.65.2 --force
+sudo npm i react-native-keyboard-aware-scroll-view@0.9.5 —force
+
+
+sudo npm i react-native@0.72.1 --force
+
+
+    "react-native": "^0.72.1",
+    "react-native-gesture-handler": "~1.7.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+
+
+//errors
+key={item?._id?.$oid}

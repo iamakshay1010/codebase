@@ -1,0 +1,171 @@
+REACT JS
+
+git checkout -b 
+stableVersion
+Main
+demo —— contains all the stable code for demo
+
+git checkout -b demo
+
+npx create-react-app my-app
+
+uniq = [...new Set(array)];
+
+let uniq = a => [...new Set(a)];
+
+
+For routes—lama dev
+https://v5.reactrouter.com/web/api/Link
+
+Use context example here(for themes and global users)
+https://github.com/safak/youtube/tree/mern-blog-app/client/src
+
+
+react queries
+https://tanstack.com/query/latest/docs/react/overview
+
+
+
+—————————————————————————————————————————————
+To push unique values to array
+if(checkedValues.indexOf(value) === -1) {
+            checkedValues.push(value);
+        }
+———————————adding unique object to array——————————————————————————
+
+let array = [{ id: 1}, {id: 2}, {id: 3}];
+
+function addUniqeObj(data) {
+  let index = -1;
+
+  for(let i = 0, i < array.length; i++) {
+    if(array[i].id === data.id) {
+      index = i;
+    }
+  }
+
+  if(index > -1) {
+    array[index] = data;
+  } else {
+    array.push(data)
+  }
+
+}
+
+
+———————remove object from array—————————
+https://stackoverflow.com/questions/3396088/how-do-i-remove-an-object-from-an-array-with-javascript
+
+var user = [
+  { id: 1, name: 'Siddhu' },
+  { id: 2, name: 'Siddhartha' },
+  { id: 3, name: 'Tiwary' }
+];
+
+var recToRemove={ id: 1, name: 'Siddhu' };
+
+user.splice(user.indexOf(recToRemove),1)
+
+———————remove object from array—————————
+
+checkedValuesBasic.push({ i, value })
+        let uniqueObjArray = [
+            ...new Map(checkedValuesBasic.map((item) => [item["value"], item])).values(),
+        ];
+
+————————————————
+https://yagisanatode.com/2021/07/03/get-a-unique-list-of-objects-in-an-array-of-object-in-javascript/
+—————————————————————————————————————
+const person = Object.create(null)
+person[firstName] = "John"
+
+        const person = Object.create(null)
+        person[String(i)] = value
+        console.log("person--->",person)
+
+    let [checkedValuesBronzeDict, setCheckedValuesBronzeDict] = React.useState({});
+    checkedValuesBronzeDict[`'${i}'`] = value
+    console.log("checkedValuesBronzeDict--->",checkedValuesBronzeDict)
+
+    let [featuresAllowed, setFeaturesAllowed] = React.useState({});
+
+    removeDuplicatesBasic,removeDuplicatesBronze,removeDuplicatesSilver,removeDuplicatesGold,removeDuplicatesPlatinum,
+
+
+
+
+
+———————————————————————————————————
+How to filter an array from all elements of another array
+
+
+var array = [{id :1, name :"test1"},{id :2, name :"test2"},{id :3, name :"test3"},{id :4, name :"test4"}];
+
+var anotherOne = [{id :2, name :"test2"}, {id :4, name :"test4"}];
+
+var filteredArray  = array.filter(function(array_el){
+   return anotherOne.filter(function(anotherOne_el){
+      return anotherOne_el.id == array_el.id;
+   }).length == 0
+});
+———————array of arrays unique items—————starts———————————————————————
+
+https://www.hackinbits.com/articles/js/how-to-iterate-a-map-in-javascript---map-part-2
+
+//—important resource
+https://www.kirupa.com/javascript/removing_duplicate_arrays_from_array.htm
+
+array of arrays unique items
+If you want to prevent duplicates in array during construction:
+if (!arr.includes(subArray)) {
+  arr.push(subArray)
+}
+//————method 1—————
+const removeDuplicates = (arr = []) => {
+    const map = new Map();
+    arr.forEach((x) => map.set(JSON.stringify(x), x));
+    arr = [...map.values()];
+    return arr;
+};
+
+console.log(
+    removeDuplicates([
+        [1, 1, 6],
+        [1, 2, 5],
+        [1, 7],
+        [1, 2, 5],
+        [1, 7],
+        [2, 6],
+    ])
+);
+
+//——method 2—————
+var a = [[1, 2, 3], [1, 2, 3], [4, 5, 6], [4, 5, 6], ['foo']];
+var tmp = [];
+
+var b = a.filter(function (v) {
+    if (tmp.indexOf(v.toString()) < 0) {
+        tmp.push(v.toString());
+        return v;
+    }
+});
+
+console.log(b);
+
+———————array of arrays unique items—————ends———————————————————————
+
+
+zustand— better then redux to update the states
+Appwrite is like firebase
+
+
+
+
+
+
+
+
+
+
+
+

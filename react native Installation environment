@@ -1,0 +1,91 @@
+Installation
+
+1.install Xcode 13.2.1
+2.refer the link below
+2.2. brew install node@16(download pkg file)
+https://nodejs.org/download/release/v16.16.0/
+2.3—>
+https://brew.sh
+https://formulae.brew.sh/cask/cocoapods
+
+Step 2:setting adb and android environments
+brew install --cask android-sdk
+brew install --cask android-platform-tools
+
+Step3:install java
+https://www.azul.com/downloads/?os=macos&architecture=x86-64-bit&package=jdk
+which java    ——>to show location of installation
+3.1—>install java 11 from link below
+Java 11—Mac OS—x86 64-bit——jdk
+
+
+https://www.azul.com/products/core/?utm_term=java%20development%20kit&utm_campaign=S%20-%20Platform%20Core%20(Zulu)%20-%20NB%20-%20EMEA&utm_source=adwords&utm_medium=ppc&hsa_acc=5970432568&hsa_cam=13383756860&hsa_grp=127174056631&hsa_ad=531015396886&hsa_src=g&hsa_tgt=kwd-299913935885&hsa_kw=java%20development%20kit&hsa_mt=p&hsa_net=adwords&hsa_ver=3&gclid=CjwKCAjwpMOIBhBAEiwAy5M6YNbVMbKk__lr1kPgbfqe27IWgESCNxhILSIIIy2M9jMARprX2_aZsxoCv1QQAvD_BwE
+
+=================ignore=======starts=======
+3.2—>type this to check location of java
+/usr/libexec/java_home --verbose 
+ /usr/libexec/java_home -V        ——>to get versions of java
+
+3.3—>Add following under .zshrc file. If .zshrc is not present, create and add.
+3.4—>touch ~/.zshrc
+3.5-->open ~/.zshrc
+3.6—>add the line below In file and save
+export JAVA_HOME=`/usr/libexec/java_home`
+
+export JAVA_HOME=`/usr/libexec/java_home -v 17.0.5`
+
+//=====to set java to path
+
+echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.bash_profile
+echo export "JAVA_HOME=\$(/usr/libexec/java_home)" >> ~/.zshrc
+
+
+
+OR—to set envi in bash—
+touch .bash_profile
+open -a TextEdit.app ~/.bash_profile
+
+=================ignore=========ends=====
+
+Step 4:——>installing grade
+4.1—>open -a TextEdit.app ~/.bash_profile
+4.2—>Add this line in file—might not work——>source ~/.bash_profile;
+4.3—>Save
+4.4—>sdk install gradle 7.4.2 
+
+cd android and execute below cmd
+gradle wrapper --gradle-version 7.3
+
+
+Step 5:
+5.1.brew install cocoapods
+sudo gem install -n /usr/local/bin cocoapods(if above cmd not working)
+
+5.2—>refer this to set permission in Xcode
+https://stackoverflow.com/questions/29108172/how-do-i-fix-the-xcrun-unable-to-find-simctl-error
+
+
+//===========version checks
+/usr/bin/xcodebuild -version.     ——>13.2.1
+—>to find build tool version
+https://stackoverflow.com/questions/24521017/android-gradle-buildtoolsversion-vs-compilesdkversion
+—>brew install node@16.16.0 
+
+
+export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home)
+export JAVA_HOME=$(/usr/libexec/java_home -v 17.0.5)
+export ANDROID_HOME=$(/Users/akshaymayekar/Library/Android/sdk)
+
+===========to remove java===========
+chmod -R 777 /Library/Java/JavaVirtualMachines  
+ls -l /Library/Java/JavaVirtualMachines 
+sudo rm -rf jdk-19.jdk 
+
+
+
+unset JAVA_HOME
+export JAVA_HOME=$(/usr/libexec/java_home -v "11.0.19”)
+
+/usr/libexec/java_home -V
+

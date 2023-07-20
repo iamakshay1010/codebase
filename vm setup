@@ -1,0 +1,44 @@
+VM setup
+
+1.create Dockerfile in same directory as project(place where package.json is there)
+
+FROM node
+WORKDIR /app
+COPY package.json .
+RUN npm i  —legacy-peer-deps 
+COPY . .
+EXPOSE 3000
+CMD [“npm”,”run”,”dev”]
+
+—commit the file changes
+—create zip file of whole repo
+—then scp the file to VM
+   —scp Desktop/Repo.zip canvas@192.168.130.16:/home/canvas/
+  —enter password
+
+—then go to VM and ls
+—ssh canvas@192.168.130.16
+—sudo su
+—cd
+—ls
+—mkdir canvas
+—cd canvas
+—unzip /home/canvas/repo.zip
+—cd repo
+—rm -rf node_modules/
+—mv repo/ canvas-fe/
+
+==>
+https://plainenglish.io/blog/step-by-step-guide-to-dockerize-react-app-created-using-vite
+
+—cd canvas-fe
+—docker build -t canvas-fe .
+—rm package.lock.json(if error)
+—npm cache clean —force (if error)
+—docker build -t canvas-fe .(if error)
+—docker images
+
+//—hosted on IP
+http://192.168.130.16:3001/
+
+

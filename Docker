@@ -1,0 +1,254 @@
+Docker
+
+docker ps
+
+// to get the pulic images here
+hub.docker.com
+https://youtu.be/bhBSlnQcq2k
+
+
+//===========================
+docker image ls     —to list all the iamges
+docker ps      —to give list of runing images
+docker remove -f <image-name>
+docker logs image-id
+docker logs -f image-id     //—to follow(to see current logs and changes)
+docker inspect image-id
+
+//=========================
+
+//nginx
+docker pull nginx
+docker images
+
+//running the containers
+docker run nginx:latest
+docker container ls
+docker run -d nginx:latest   //—run container in detached mode
+
+docker stop 66a7443d0739. (container id)
+
+//==================exposing the ports
+docker run -d -p 8080:80 nginx:latest   //running on localhost 8080 and port 80
+
+then go to
+http://localhost:8080/
+
+//==================exposing multiple ports
+docker run -d -p 3000:80 -p 8080:80 nginx:latest   //running on localhost 8080 and 3000 and port 80
+docker stop pedantic_feynman (name)
+docker start pedantic_feynman
+
+//———docker help
+docker ps —help
+docker ps -a   //===show all the containers 
+docker rm 1234  //===docker id
+
+//===================naming containers
+docker run --name Akshay -d -p 3000:80 -p 8080:80 nginx:latest 
+docker stop Akshay
+docker start Akshay
+
+//===================volumes
+https://hub.docker.com/_/nginx
+Hosting some simple static content
+
+docker run --name some-nginx -v /some/content:/usr/share/nginx/html:ro -d nginx
+ro—>read only
+
+//—steps
+docker run --name Akshay -d -p 3000:80 -p 8080:80 nginx:latest
+docker stop Akshay
+docker rm Akshay 
+
+//===========================================================
+1.create folder on desktop named website
+2.inside of it create index.html
+3.cd website
+4.  docker run --name Akshay -v $(pwd):/usr/share/nginx/html:ro -d -p 3000:80  nginx:latest
+5. just update code and save and refresh
+6. docker exec -it Akshay bash. //this will take inside of container
+7. cd /usr/share/nginx/html/
+8.  ls -al
+9. touch index.html (no edit alllowed)
+10. exit
+docker rm -f Akshay
+
+//——to edit the file
+docker rm -f Akshay
+docker run --name Akshay -v $(pwd):/usr/share/nginx/html -d -p 3000:80  nginx:latest   
+ //===remove ro(read only,-v—-> volume)
+docker exec -it Akshay bash
+1. cd /usr/share/nginx/html/t/  
+2. touch index.html 
+
+
+//======================volumes between containers
+docker run --name Akshay-copy  --volumes-from Akshay -d -p 3001:80  nginx
+
+//======================docker file
+docker image ls
+docker ps
+1.create dockerfile
+2.add code
+
+FROM nginx:latest
+ADD . /usr/share/nginx/html
+
+3.docker build  --tag website:latest . (dot importtant, image name should be lowercase)
+4.docker image ls   // tol
+5.docker rm -f website
+6.docker run --name website -p 3000:80 -d website:latest   
+
+//======================= node and express—[creating own image and deploying it]
+mkdir node-demo
+cd node-demo
+npm init
+npm install --save express
+node index.js
+
+1.createDockerfile
+2.add this lines
+FROM node:latest
+WORKDIR /app
+ADD . .
+RUN npm install
+CMD node index.js
+
+3.docker build  -t node-demo:latest .
+4.docker run --name akshay12 -d -p 3000:3000 node-demo:latest
+
+//========================Dockerfile
+https://docs.docker.com/engine/reference/builder/
+
+1.creating docker file
+FROM nginx:latest
+ADD . /usr/share/nginx/html
+
+2.docker build  -t node-demo:latest .
+
+//====complete instructions=======docker file for node and apis
+1.create the folder named node-demo
+2.npm init
+3.add code to index.js
+4.creating the docker file
+FROM node:latest
+WORKDIR /app
+ADD . .      //—add everything from inside of this directory to app directory(two dots)
+RUN npm install
+CMD node index.js
+
+5.docker build  -t node-demo:latest .
+6.docker run --name akshay -d -p 3000:3000 node-demo:latest
+
+//================Docker ignore file
+1.create file named
+.dockerignore
+2.inside of this file add what u dont want
+node_modules
+Dockerfile
+.git
+folder/**
+
+//=====caching and layering===faster mathod 
+1.create the folder named node-demo
+2.npm init
+3.add code to index.js
+3.1 install chahing stuff
+npm i -S react webpack gulp  grunt
+4.creating the docker file
+FROM node:latest
+WORKDIR /app
+ADD package*.json ./
+RUN npm install
+ADD . .      //—add everything from inside of this directory to app directory(two dots)
+CMD node index.js
+
+//===========Alpine—>very light weight============STARTS========================
+docker pull node:lts-alpine
+docker pull nginx:alpine
+docker image ls
+
+//————node alpine
+1.create the folder named node-demo
+2.npm init
+3.add code to index.js
+3.1 install chahing stuff
+npm i -S react webpack gulp  grunt
+4.creating the docker file
+FROM node:alpine
+WORKDIR /app
+ADD package*.json ./
+RUN npm install
+ADD . .      //—add everything from inside of this directory to app directory(two dots)
+CMD node index.js
+  
+//————node:nginx
+FROM nginx:alpine
+ADD . /usr/share/nginx/html
+
+//===========Alpine—>very light weight============ENDS========================
+
+//===============tags,versioning and tagging========starts==========
+refer this website to get tags and versions
+website: https://hub.docker.com/
+//—————tags and versions
+docker pull node:8-alpine    —>version is 8
+docker pull node:12-alpine   —>version is 12
+
+example:-
+  FROM nginx:20-alpine
+
+//———————running containers and tags
+docker tag node-demo:latest node-demo:1   //here anotehr image will be crated with tag 1
+docker image ls
+//——————runnig containers with diffeerent tags
+docker run --name akshay -d -p 3000:3000 node-demo:latest
+docker run --name akshay-1 -d -p 3001:3000 node-demo:1
+docker run --name akshay-2 -d -p 3002:3000 node-demo:2
+docker image ls 
+
+//===============tags,versioning and tagging========ends==========
+
+//=============Docker Registry======START
+-server side application that stores and let u destribute the docker files
+-used in CI/CD
+ -private/public registry
+1.docker hub
+2.quay.io
+3.amazon ECR
+ //———steps
+go to cloud.docker.com
+create repository //========
+docker push username/website:tagname
+docker image ls
+docker tag akshay-website:1 username/docker-image:1   
+ //—here akshay-website is local docker img and docker-image is image on repo
+docker login
+docker push username/docker-image:1  
+docker push username/docker-image:2
+docker push username/docker-image:latest
+
+//—remove local repo images
+docker rmi username/docker-image:1  
+docker rmi username/docker-image:2
+
+//——pulling images from the repo and runing them
+docker pull username/docker-image:2
+docker run --name username/docker-image:2 -d -p 3002:3000 username/docker-image:2
+
+//=============Docker Registry=====ENDS===========
+
+/===============KUbernetes======STARTS =====3.00.01=== 
+orchestration tools
+pods ,services and ingress
+load balancer
+
+
+
+
+
+
+
+
+
